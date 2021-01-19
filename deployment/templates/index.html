@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js">
+  </script>
+<style type="text/css">
+body{
+	padding:0;
+	margin-top:20px;
+}
+.bgimage{
+	background-image: url('../bgimage.jpg');
+	width: 100%;
+	height: 300px;
+	background-repeat: no-repeat;
+	opacity: 0.8;
+}
+	
+.heading{
+	text-align: center;
+	font-weight: bold;
+	padding-top: 80px;
+
+}
+.head{
+	font-size: 50px;
+	font-weight: bold;
+	color: black;
+
+}
+.para{
+	font-size: 30px;
+	font-weight: bold;
+	color: black;
+}
+.img-center{
+	 display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+</style>
+</head>
+<body background="https://dv-website.s3.amazonaws.com/uploads/2019/05/jz_csweather_060619.jpg">
+
+	<!-- row 1 -->
+	<form class="form-signin" action="{{ url_for('predict') }}" method="POST" name="form" enctype='multipart/form-data'>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="container">
+					<div class="bgimage">
+						<div class="heading">
+							<h1 class="head">Multiple Class Weather Detection</h1>
+							<h3 class="para">Cloudy/Rain/Shine/Sunrise</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- row 2 -->
+		<div class="row" style="margin-top: 20px;">
+			<div class="container ">
+				<div class="col-md-12" >
+					<img class="img-center" id="blah" src="" height="297px" width="270px" alt="Weather image" style="border:3px solid black"/> 
+				</div>	
+			</div>
+		</div>
+
+		<div class="row" style="margin-top: 20px;">
+			<div class="container text-center">
+				<input type='file' onchange="readURL(this);" style="margin: 0 auto" name='file' id="imageUpload" accept=".png, .jpg, .jpeg" /><hr>
+				<label for="imageUpload"></label>
+			 	<button class="btn btn-primary btn-lg">Predict</button>
+			</div>
+		
+		</div>
+
+		
+		<script type="text/javascript">
+		 	function readURL(input) {
+            	if (input.files && input.files[0]) {
+                	var reader = new FileReader();
+
+                	reader.onload = function (e) {
+                    	$('#blah')
+                        	.attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+		</script>
+	</form>
+	<h1 style = "text-align: center;">{{ predict }}</h1><hr>
+</body>
+</html>
