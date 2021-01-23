@@ -1,6 +1,6 @@
 import numpy as np
 import tensorflow as tf
-import cv2
+# import cv2
 from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
 import os
